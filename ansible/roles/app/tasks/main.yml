@@ -20,7 +20,7 @@
     owner=root group=root
   with_items: app.environments
   when: app_ini|changed and app.environments
-  become: yes
+  sudo: yes
   notify: restart nginx
 
 - name: Add link to the source directory to the home

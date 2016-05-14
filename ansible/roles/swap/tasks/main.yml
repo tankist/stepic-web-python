@@ -1,6 +1,6 @@
 ---
 - name: "swap space"
-  become: yes
+  sudo: yes
   command: |
     {% if swap_use_dd %}
     dd if=/dev/zero of={{ swap_file }} bs=1M count={{ swap_size }}
@@ -13,7 +13,7 @@
   when: swap_size != false
 
 - name: "swap permissions"
-  become: yes
+  sudo: yes
   file:
     dest: "{{ swap_file }}"
     owner: "root"
@@ -22,18 +22,18 @@
   when: swap_size != false
 
 - name: "make swap"
-  become: yes
+  sudo: yes
   command: "mkswap {{ swap_file }}"
   register: swap_make
   when: swap_size != false and swap_write.changed
 
 - name: "enable swap"
-  become: yes
+  sudo: yes
   command: "swapon {{ swap_file }}"
   when: swap_size != false and swap_make.changed
 
 - name: "swap fstab"
-  become: yes
+  sudo: yes
   lineinfile:
     dest: "/etc/fstab"
     line: "{{ swap_file }}   none    swap   sw    0   0"
@@ -41,7 +41,7 @@
   when: swap_size != false
 
 - name: "swappiness"
-  become: yes
+  sudo: yes
   sysctl:
     name: "vm.swappiness"
     value: "{{ swap_swappiness }}"
@@ -50,7 +50,7 @@
   when: swap_swappiness != false
 
 - name: "vfs cache pressure"
-  become: yes
+  sudo: yes
   sysctl:
     name: "vm.vfs_cache_pressure"
     value: "{{ swap_vfs_cache_pressure }}"

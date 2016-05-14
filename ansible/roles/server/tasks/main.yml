@@ -1,10 +1,10 @@
 ---
 - name: Update apt
-  become: yes
+  sudo: yes
   apt: update_cache=yes
 
 - name: Install System Packages
-  become: yes
+  sudo: yes
   apt: pkg={{ item }} state=latest
   with_items:
     - curl
@@ -12,26 +12,26 @@
     - python-software-properties
 
 - name: Install Extra Packages
-  become: yes
+  sudo: yes
   apt: pkg={{ item }} state=latest
   with_items: "{{ server.packages }}"
   when: server.packages is defined
 
 - name: Configure the timezone
-  become: yes
+  sudo: yes
   template: src=timezone.conf.j2 dest=/etc/timezone
 
 - name: More Configure the timezone
-  become: yes
+  sudo: yes
   file: src=/usr/share/zoneinfo/{{server.timezone}} dest=/etc/localtime state=link force=yes backup=yes
 
 - name: Set default system language pack
   shell: locale-gen {{server.locale}}
-  become: yes
+  sudo: yes
 
 - name: Create a directories for nginx vhosts
   shell: mkdir -p {{ item.root }}
   with_items: "{{nginx_vhosts}}"
-  become: yes
+  sudo: yes
   when: nginx_vhosts is defined
 
