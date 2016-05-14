@@ -63,3 +63,9 @@ target/
 
 #Idea
 .idea
+
+#App
+/uploads/*
+!/uploads/.gitkeep
+/logs/*
+!/logs/.gitkeep

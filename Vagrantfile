@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, path: "ansible/windows.sh", args: ["stepic.lan"]
     end
 
-    config.vm.synced_folder "./", "/var/www/stepic", type: "nfs"
+    config.vm.synced_folder "./", "/home/box", type: "nfs"
 
     config.vm.synced_folder "./ansible", "/vagrant", type: "nfs"
 end

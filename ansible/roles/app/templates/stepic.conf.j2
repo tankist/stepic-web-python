@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name {{server.domain}} www.{{server.domain}};
+    server_name _;
     return 301 https://{{server.domain}}$request_uri;
 }
 
@@ -23,15 +23,23 @@ server {
     add_header X-Frame-Options SAMEORIGIN;
     add_header Strict-Transport-Security "max-age=31536000; includeSubdomains;";
 
-    root "/var/www/stepic/web";
+    root "/home/box/web/public";
 
-    access_log "/var/www/stepic/var/logs/stepic.nginx.access.log" combined;
-    error_log  "/var/www/stepic/var/logs/stepic.nginx.error.log" notice;
+    access_log "/home/box/logs/stepic.nginx.access.log" combined;
+    error_log  "/home/box/logs/stepic.nginx.error.log" notice;
 
     sendfile off;
 
-    location / {
+    location /uploads/ {
+        root "/home/box/web/uploads";
+    }
 
+    location / {
+        return 404;
+    }
+
+    location ~* \..+$ {
+        root "/home/box/web/public";
     }
 
     location ~* \.(css|js|jpeg|jpg|gif|png|ico)$ {

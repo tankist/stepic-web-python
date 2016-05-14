@@ -26,6 +26,6 @@
 - name: Add link to the source directory to the home
   file:
     path=/home/vagrant/stepic
-    src=/var/www/stepic
+    src=/home/box
     state=link
     owner=vagrant group=vagrant
