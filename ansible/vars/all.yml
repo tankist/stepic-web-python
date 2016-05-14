@@ -26,5 +26,3 @@ app:
         errors: []
     environments: [stepic]
 swap_size: 2048
-
-ssl_certs_common_name: "{{server.domain}}"

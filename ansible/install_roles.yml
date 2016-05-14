@@ -2,4 +2,3 @@
 - src: geerlingguy.mysql
 - src: geerlingguy.memcached
 - src: geerlingguy.nginx
-- src: jdauphant.ssl-certs

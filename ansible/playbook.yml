@@ -8,7 +8,6 @@
     - swap
     - server
     - vagrant_local
-    - jdauphant.ssl-certs
     - geerlingguy.nginx
     - geerlingguy.mysql
     - geerlingguy.memcached
