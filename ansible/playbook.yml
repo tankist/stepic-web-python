@@ -12,5 +12,4 @@
     - geerlingguy.nginx
     - geerlingguy.mysql
     - geerlingguy.memcached
-    - geerlingguy.adminer
     - app
