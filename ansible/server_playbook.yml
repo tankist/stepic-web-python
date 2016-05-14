@@ -5,8 +5,8 @@
     - vars/all.yml
 
   roles:
-    - swap
+#    - swap
     - server
-    - vagrant_local
+#    - vagrant_local
     - nginx
     - app

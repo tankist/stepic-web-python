@@ -23,9 +23,9 @@
   sudo: yes
   notify: restart nginx
 
-- name: Add link to the source directory to the home
-  file:
-    path=/home/vagrant/stepic
-    src=/home/box
-    state=link
-    owner=vagrant group=vagrant
+#- name: Add link to the source directory to the home
+#  file:
+#    path=/home/vagrant/stepic
+#    src=/home/box
+#    state=link
+#    owner=vagrant group=vagrant

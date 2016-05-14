@@ -5,7 +5,7 @@
 # Add Ansible Repository & Install Ansible
 #sudo add-apt-repository -y ppa:ansible/ansible
 sudo apt-get update
-sudo apt-get install -y software-properties-common ansible git
+sudo apt-get install -y software-properties-common ansible git python-apt
 
 # Setup Ansible for Local Use and Run
 sudo cp ./inventories/dev /etc/ansible/hosts -f
