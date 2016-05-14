@@ -10,4 +10,4 @@ sudo apt-get install -y software-properties-common ansible git
 #Galaxy roles installation
 sudo ansible-galaxy install -r ./install_roles.yml
 
-sudo ansible-playbook ./playbook.yml --connection=local -v
+sudo ansible-playbook ./playbook.yml -e hostname=stepic.lan --connection=local -v
