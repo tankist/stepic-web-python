@@ -1,0 +1,43 @@
+---
+server:
+    install: "1"
+    packages: [htop, git, mc, gcc, autoconf, re2c, make, automake, libpcre3, libpcre3-dev, libssl1.0.0, libssl-dev, libcurl3, libcurl4-openssl-dev]
+    timezone: Europe/Kiev
+    locale: en_US.UTF-8
+    domain: "stepic.lan"
+vagrant_local:
+    install: "1"
+    vm:
+        hostname: "{{server.domain}}"
+nginx_sendfile: "off"
+nginx_vhosts:
+  - listen: "80"
+    server_name: "192.168.44.44 stepic.dev"
+    root: "/var/www/html"
+    index: "index.html index.htm"
+#    extra_parameters: |
+#      location ~ \.php$ {
+#        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+#        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+#        fastcgi_index index.php;
+#        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#        include fastcgi_params;
+#      }
+
+mysql_root_password: "temp123"
+mysql_root_password_update: "yes"
+mysql_packages:
+  - mariadb-client
+  - mariadb-server
+mysql_databases:
+    - { name: stepic }
+mysql_users:
+    - { name: stepic, password: stepic, priv: "stepic%.*:ALL" }
+
+app:
+    nginx:
+        errors: []
+    environments: [stepic]
+swap_size: 2048
+
+ssl_certs_common_name: "{{server.domain}}"

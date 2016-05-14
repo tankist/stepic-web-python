@@ -1,0 +1,6 @@
+# install_roles.yml
+- src: geerlingguy.adminer
+- src: geerlingguy.mysql
+- src: geerlingguy.memcached
+- src: geerlingguy.nginx
+- src: jdauphant.ssl-certs

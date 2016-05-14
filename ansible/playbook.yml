@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/all.yml
+
+  roles:
+    - swap
+    - server
+    - vagrant_local
+    - jdauphant.ssl-certs
+    - geerlingguy.nginx
+    - geerlingguy.mysql
+    - geerlingguy.memcached
+    - geerlingguy.adminer
+    - app
