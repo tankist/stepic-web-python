@@ -3,7 +3,7 @@
 - name: Compile environment virtual host
   template:
     src: "stepic.conf.j2"
-    dest: "/home/box/etc/nginx.conf"
+    dest: "/home/box/web/etc/nginx.conf"
     owner: root
     group: root
     mode: 0644
@@ -13,7 +13,7 @@
 - name: Enable environment virtual host
   file:
     path="/etc/nginx/sites-enabled/stepic.conf"
-    src="/home/box/etc/nginx.conf"
+    src="/home/box/web/etc/nginx.conf"
     state=link
     owner=root group=root
   when: app_ini|changed
