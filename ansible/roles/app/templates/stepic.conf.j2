@@ -1,11 +1,11 @@
 server {
-    listen 80 default;
+    listen 80;
     server_name _;
 
     root "/home/box/web/public";
 
-    access_log "/home/box/logs/stepic.nginx.access.log" combined;
-    error_log  "/home/box/logs/stepic.nginx.error.log" notice;
+    access_log "/home/box/web/logs/stepic.nginx.access.log" combined;
+    error_log  "/home/box/web/logs/stepic.nginx.error.log" notice;
 
     sendfile off;
 
