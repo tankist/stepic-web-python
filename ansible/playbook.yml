@@ -1,14 +1,11 @@
 ---
 - hosts: all
-  sudo: true
+  become: true
   vars_files:
     - vars/all.yml
 
   roles:
-    - swap
     - server
     - vagrant_local
     - geerlingguy.nginx
-    - geerlingguy.mysql
-    - geerlingguy.memcached
     - app

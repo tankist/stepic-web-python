@@ -1,12 +1,10 @@
 ---
 - hosts: all
-  sudo: true
+  become: true
   vars_files:
     - vars/all.yml
 
   roles:
-#    - swap
     - server
-#    - vagrant_local
     - nginx
     - app

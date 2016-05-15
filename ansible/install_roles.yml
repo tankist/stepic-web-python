@@ -1,4 +1,2 @@
 # install_roles.yml
-- src: geerlingguy.mysql
-- src: geerlingguy.memcached
 - src: geerlingguy.nginx

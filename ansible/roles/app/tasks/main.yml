@@ -17,5 +17,8 @@
     state=link
     owner=root group=root
   when: app_ini|changed
-  sudo: yes
+  become: yes
   notify: restart nginx
+
+- name: Install Gunicorn server
+  pip: name=gunicorn

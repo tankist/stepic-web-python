@@ -9,20 +9,5 @@ vagrant_local:
     install: "1"
     vm:
         hostname: "{{server.domain}}"
+
 nginx_sendfile: "off"
-
-mysql_root_password: "temp123"
-mysql_root_password_update: "yes"
-mysql_packages:
-  - mariadb-client
-  - mariadb-server
-mysql_databases:
-    - { name: stepic }
-mysql_users:
-    - { name: stepic, password: stepic, priv: "stepic%.*:ALL" }
-
-app:
-    nginx:
-        errors: []
-    environments: [stepic]
-swap_size: 2048

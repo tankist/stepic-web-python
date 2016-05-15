@@ -1,7 +1,0 @@
----
-- name: mysql | Import dump
-  mysql_db: name={{ item.database }} state=import login_user=root login_password={{ mysql_root_password }} target={{ item.dump }}
-  with_items: mysql_dumps
-  when: mysql_dumps
-  tags:
-    - dump
