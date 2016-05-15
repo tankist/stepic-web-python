@@ -9,8 +9,8 @@ server {
 
     sendfile off;
 
-    location /uploads/ {
-        root "/home/box/web/uploads";
+    location ^~ /uploads/ {
+        root "/home/box/web";
     }
 
     location / {
@@ -19,10 +19,5 @@ server {
 
     location ~* \..+$ {
         root "/home/box/web/public";
-    }
-
-    location ~* \.(css|js|jpeg|jpg|gif|png|ico)$ {
-        expires 30d;
-        access_log off;
     }
 }
