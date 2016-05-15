@@ -6,5 +6,5 @@
 
   roles:
     - server
-    - nginx
+    - geerlingguy.nginx
     - app
