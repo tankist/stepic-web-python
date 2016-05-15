@@ -69,3 +69,4 @@ target/
 !/uploads/.gitkeep
 /logs/*
 !/logs/.gitkeep
+.vagrant
