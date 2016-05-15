@@ -2,30 +2,20 @@
 # application tasks to be customized and to run after the main provision
 - name: Compile environment virtual host
   template:
-    src: "{{ item }}.conf.j2"
-    dest: "/etc/nginx/sites-available/{{ item }}.conf"
+    src: "stepic.conf.j2"
+    dest: "/home/box/etc/nginx.conf"
     owner: root
     group: root
     mode: 0644
   notify: restart nginx
-  with_items: app.environments
-  when: app.environments
   register: app_ini
 
 - name: Enable environment virtual host
   file:
-    path="/etc/nginx/sites-enabled/{{ item }}.conf"
-    src="/etc/nginx/sites-available/{{ item }}.conf"
+    path="/etc/nginx/sites-enabled/stepic.conf"
+    src="/home/box/etc/nginx.conf"
     state=link
     owner=root group=root
-  with_items: app.environments
-  when: app_ini|changed and app.environments
+  when: app_ini|changed
   sudo: yes
   notify: restart nginx
-
-#- name: Add link to the source directory to the home
-#  file:
-#    path=/home/vagrant/stepic
-#    src=/home/box
-#    state=link
-#    owner=vagrant group=vagrant
