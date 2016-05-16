@@ -17,14 +17,14 @@
     state=link
     owner=root group=root
   when: app_ini|changed
-  become: yes
+  sudo: yes
   notify: restart nginx
 
 - name: Remove default nginx configuration
   file:
     path="/etc/nginx/sites-enabled/default"
     state=absent
-  become: yes
+  sudo: yes
 
 - name: Install Gunicorn server
   pip: name=gunicorn
@@ -38,7 +38,7 @@
     src="/home/box/web/etc/hello.py"
     state=link
     owner=root group=root
-  become: yes
+  sudo: yes
 
 - name: Compile gunicorn service config
   template:
