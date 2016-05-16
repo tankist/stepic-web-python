@@ -3,7 +3,7 @@
 - name: Compile environment virtual host
   template:
     src: "stepic.conf.j2"
-    dest: "/home/box/web/etc/nginx.conf"
+    dest: "/etc/nginx/sites-available/stepic.conf"
     owner: root
     group: root
     mode: 0644
@@ -13,12 +13,41 @@
 - name: Enable environment virtual host
   file:
     path="/etc/nginx/sites-enabled/stepic.conf"
-    src="/home/box/web/etc/nginx.conf"
+    src="/etc/nginx/sites-available/stepic.conf"
     state=link
     owner=root group=root
   when: app_ini|changed
   become: yes
   notify: restart nginx
 
+- name: Remove default nginx configuration
+  file:
+    path="/etc/nginx/sites-enabled/default"
+    state=absent
+  become: yes
+
 - name: Install Gunicorn server
   pip: name=gunicorn
+
+- name: Creates Gunicorn config directory
+  file: path=/etc/gunicorn.d state=directory
+
+- name: Add Gunicorn config
+  file:
+    path="/etc/gunicorn.d/hello.py"
+    src="/home/box/web/etc/hello.py"
+    state=link
+    owner=root group=root
+  become: yes
+
+- name: Compile gunicorn service config
+  template:
+    src: "gunicorn.conf.j2"
+    dest: "/etc/init/stepic.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart stepic
+
+- name: Ensure stepic is started and enabled to start at boot.
+  service: name=stepic state=started enabled=yes

@@ -35,3 +35,5 @@
   become: yes
   when: nginx_vhosts is defined
 
+- name: Install pip
+  easy_install: name=pip
