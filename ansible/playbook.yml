@@ -8,4 +8,5 @@
     - server
     - vagrant_local
     - geerlingguy.nginx
+    - geerlingguy.mysql
     - app

@@ -11,3 +11,16 @@ vagrant_local:
         hostname: "{{server.domain}}"
 
 nginx_sendfile: "off"
+
+mysql_user_home: "/home/box"
+mysql_root_password: ""
+
+mysql_packages:
+    - mysql-common-5.6
+    - mysql-server-5.6
+
+mysql_databases:
+    - { name: "ask" }
+
+mysql_users:
+    - { name: "ask", password: "ask" }

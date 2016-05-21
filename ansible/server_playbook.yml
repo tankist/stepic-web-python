@@ -7,4 +7,5 @@
   roles:
     - server
     - geerlingguy.nginx
+    - geerlingguy.mysql
     - app
