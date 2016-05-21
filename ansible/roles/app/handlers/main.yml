@@ -1,3 +1,6 @@
 ---
 - name: restart stepic
   service: name=stepic state=restarted
+
+- name: restart ask
+  service: name=ask state=restarted

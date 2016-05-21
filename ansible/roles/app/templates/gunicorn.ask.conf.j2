@@ -1,0 +1,11 @@
+description "Ask app"
+
+start on (filesystem)
+stop on runlevel [016]
+
+respawn
+setuid nobody
+setgid nogroup
+chdir /home/box/web/ask
+
+exec gunicorn -c /home/box/web/ask/gunicorn.py ask.wsgi

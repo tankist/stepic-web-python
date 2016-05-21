@@ -29,10 +29,13 @@
 - name: Install Gunicorn server
   pip: name=gunicorn
 
+- name: Install Django
+  pip: name=django
+
 - name: Creates Gunicorn config directory
   file: path=/etc/gunicorn.d state=directory
 
-- name: Add Gunicorn config
+- name: Add Gunicorn config for Stepic
   file:
     path="/etc/gunicorn.d/hello.py"
     src="/home/box/web/etc/hello.py"
@@ -40,14 +43,26 @@
     owner=root group=root
   sudo: yes
 
-- name: Compile gunicorn service config
+- name: Compile gunicorn service config for Stepic
   template:
-    src: "gunicorn.conf.j2"
+    src: "gunicorn.hello.conf.j2"
     dest: "/etc/init/stepic.conf"
     owner: root
     group: root
     mode: 0644
   notify: restart stepic
 
+- name: Compile gunicorn service config for Ask
+  template:
+    src: "gunicorn.ask.conf.j2"
+    dest: "/etc/init/ask.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart ask
+
 - name: Ensure stepic is started and enabled to start at boot.
   service: name=stepic state=started enabled=yes
+
+- name: Ensure Ask is started and enabled to start at boot.
+  service: name=ask state=started enabled=yes
