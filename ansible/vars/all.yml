@@ -1,7 +1,7 @@
 ---
 server:
     install: "1"
-    packages: [htop, git, mc, gcc, autoconf, re2c, make, automake, libpcre3, libpcre3-dev, libssl1.0.0, libssl-dev, libcurl3, libcurl4-openssl-dev]
+    packages: [htop, git, mc]
     timezone: Europe/Kiev
     locale: en_US.UTF-8
     domain: "stepic.lan"
