@@ -66,3 +66,15 @@
 
 - name: Ensure Ask is started and enabled to start at boot.
   service: name=ask state=started enabled=yes
+
+- name: Ensure ask DB exists
+  mysql_db:
+    name=ask
+    state=present
+
+- name: Ensure ask DB user exists
+  mysql_user:
+    name=ask
+    password=ask
+    priv=*.*:ALL
+    state=present
