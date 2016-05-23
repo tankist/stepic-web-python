@@ -7,7 +7,7 @@
 <body>
 <h1>Hello</h1>
 {% for question in questions.object_list %}
-<h2><a href="{% url 'question' question.id%}">{{ question.title }}</a></h2>
+<h2><a href="{% url 'question' question.id%}">{{ question.title }} ({{ question.added_at }})</a></h2>
 <p>{{ question.text }}</p>
 {% endfor %}
 </body>
