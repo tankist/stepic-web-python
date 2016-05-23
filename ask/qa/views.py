@@ -1,10 +1,11 @@
 from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render
+from django.db.models import ObjectDoesNotExist
 from models import Question
 
 
-def test(request, *args, **kwargs):
+def test():
     return HttpResponse('OK')
 
 
@@ -31,4 +32,22 @@ def index(request):
     questions = paginate(request, Question.objects.order_by('-added_at'))
     return render(request, 'index.html', {
         'questions': questions
+    })
+
+
+def popular(request):
+    questions = paginate(request, Question.objects.order_by('-rating'))
+    return render(request, 'index.html', {
+        'questions': questions
+    })
+
+
+def question(request, id):
+    try:
+        q = Question.objects.get(pk=id)
+    except ObjectDoesNotExist:
+        raise Http404
+    return render(request, 'question.html', {
+        'question': q,
+        'answers': q.answer_set.all
     })
