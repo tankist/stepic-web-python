@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello</h1>
+{% for question in questions.object_list %}
+<h2>{{ question.title }}</h2>
+<p>{{ question.text }}</p>
+{% endfor %}
+</body>
+</html>
